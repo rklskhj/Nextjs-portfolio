@@ -6,7 +6,7 @@ function Home() {
   return (
     <Layout>
       <Head>
-        <title>퍼플아이오 과제 김혁진</title>
+        <title>김혁진의 Portfolio!</title>
         <mate name="description" content="합격가자!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
