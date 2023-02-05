@@ -15,7 +15,7 @@ export default function About() {
           <br className="hidden lg:inline-block" />
           <span className="text-2xl">만나서 반가워요👋</span>
         </h1>
-        <p className="mb-8 leading-relaxed">
+        <p className="mb-8 leading-relaxed break-keep">
           국제예술대학교 실용음악과 보컬전공을 졸업해 음악의 꿈을 좇다 개발이란
           매력에 빠져 커리어 전환까지 꿈꾸게 된 신입 개발자 김혁진입니다! 개발을
           공부하면서 가장 중요한건 개인의 실력보다 함께하는 팀원들과의
