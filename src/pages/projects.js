@@ -9,7 +9,7 @@ export default function Projects({ projects }) {
       <div className="flex flex-col items-center justify-center min-h-screen px-6 mb-10">
         <Head>
           <title>김혁진의 Portfolio!</title>
-          <mate name="description" content="Portfolio" />
+          <mate name="description" content="Portfolio!" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <h1 className="text-4xl font-bold sm:text-6xl">

@@ -1,9 +1,7 @@
 import Link from "next/link";
 import DarkModeToggleButton from "./dark-mode-toggle";
-import { KAKAO_URL } from "../config";
 
 export default function Header() {
-  console.log(KAKAO_URL);
   return (
     <>
       <header className="text-gray-600 body-font">

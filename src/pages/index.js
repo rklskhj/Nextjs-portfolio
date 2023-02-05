@@ -7,7 +7,7 @@ function Home() {
     <Layout>
       <Head>
         <title>김혁진의 Portfolio!</title>
-        <mate name="description" content="합격가자!" />
+        <meta name="description" content="Portfolio!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
