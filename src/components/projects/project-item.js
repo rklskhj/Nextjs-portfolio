@@ -47,7 +47,7 @@ export default function ProjectItem({ data }) {
       />
       <div className="flex flex-col p-4">
         <h1 className="text-2xl font-bold">{title}</h1>
-        <h3 className="my-4 text-xl">{description}</h3>
+        <h3 className="my-4 text-xl break-keep">{description}</h3>
         {webSiteLink && (
           <Link
             className="hover:text-[#EC008B] dark:hover:text-[#EC008B]"

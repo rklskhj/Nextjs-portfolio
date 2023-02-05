@@ -6,7 +6,7 @@ import { TOKEN, DATABASE_ID } from "../config";
 export default function Projects({ projects }) {
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 mb-10">
+      <div className="flex flex-col items-center justify-center min-h-screen px-3 mb-10">
         <Head>
           <title>김혁진의 Portfolio!</title>
           <mate name="description" content="Portfolio!" />
@@ -16,7 +16,7 @@ export default function Projects({ projects }) {
           총 프로젝트 :
           <span className="pl-4 text-blue-500">{projects.results.length}</span>
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 m-6 py-10 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 p-12 m-4 gap-8">
           {projects.results.map((aProject) => (
             <ProjectItem key={aProject.id} data={aProject} />
           ))}
