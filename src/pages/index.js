@@ -7,7 +7,7 @@ function Home() {
     <Layout>
       <Head>
         <title>퍼플아이오 과제 김혁진</title>
-        <mate name="description" content="합격가자" />
+        <mate name="description" content="합격가자!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import DarkModeToggleButton from "./dark-mode-toggle";
+import { KAKAO_URL } from "../config";
 
 export default function Header() {
   return (
@@ -39,10 +40,7 @@ export default function Header() {
             <Link href="/projects" className="mr-5 hover:text-gray-900">
               PROJECTS💾
             </Link>
-            <Link
-              href="https://open.kakao.com/o/slJFWR2e"
-              className="mr-5 hover:text-gray-900"
-            >
+            <Link href={KAKAO_URL} className="mr-5 hover:text-gray-900">
               CONTACT📱
             </Link>
           </nav>
