@@ -2,26 +2,36 @@ import Layout from "@/components/layouy";
 import ProjectItem from "@/components/projects/project-item";
 import Head from "next/head";
 import { TOKEN, DATABASE_ID } from "../config";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Projects({ projects }) {
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-screen px-3 mb-10">
-        <Head>
-          <title>김혁진의 Portfolio!</title>
-          <mate name="description" content="Portfolio!" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <h1 className="text-4xl font-bold sm:text-6xl">
-          총 프로젝트 :
-          <span className="pl-4 text-blue-500">{projects.results.length}</span>
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 p-12 m-4 gap-8">
-          {projects.results.map((aProject) => (
-            <ProjectItem key={aProject.id} data={aProject} />
-          ))}
+      <Head>
+        <title>김혁진의 Portfolio!</title>
+        <mate name="description" content="Portfolio!" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "tween", duration: 0.5 }}
+      >
+        <div className="flex flex-col items-center justify-center min-h-screen px-3 mb-10">
+          <h1 className="text-4xl font-bold sm:text-6xl">
+            총 프로젝트 :
+            <span className="pl-4 text-blue-500">
+              {projects.results.length}
+            </span>
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 p-12 m-4 gap-8">
+            {projects.results.map((aProject) => (
+              <ProjectItem key={aProject.id} data={aProject} />
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 }
