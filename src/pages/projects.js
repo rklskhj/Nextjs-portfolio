@@ -2,14 +2,14 @@ import Layout from "@/components/layouy";
 import ProjectItem from "@/components/projects/project-item";
 import Head from "next/head";
 import { TOKEN, DATABASE_ID } from "../config";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Projects({ projects }) {
   return (
     <Layout>
       <Head>
         <title>김혁진의 Portfolio!</title>
-        <mate name="description" content="Portfolio!" />
+        <meta name="description" content="Portfolio!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

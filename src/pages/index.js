@@ -1,7 +1,7 @@
 import Layout from "@/components/layouy";
 import Head from "next/head";
 import About from "@/components/home/about";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
