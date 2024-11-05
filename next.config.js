@@ -6,6 +6,7 @@ const nextConfig = {
       "s3.us-west-2.amazonaws.com",
       "images.unsplash.com",
       "www.notion.so",
+      "prod-files-secure.s3.us-west-2.amazonaws.com",
     ],
   },
 };
