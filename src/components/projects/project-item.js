@@ -73,12 +73,12 @@ const ProjectItem = ({ data }) => {
           </a>
         )} */}
         <div className="flex flex-col">
-          <p className="my-1">{workPeriod}</p>
-          <div className="flex items-start mt-2">
+          <p className="break-keep my-1">{workPeriod}</p>
+          <div className="flex items-start mt-2 flex-wrap gap-2">
             {tags &&
               tags.map((aTag) => (
                 <h1
-                  className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
+                  className="px-2 py-1 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
                   key={aTag.id}
                 >
                   {aTag.name}

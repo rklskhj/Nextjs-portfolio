@@ -10,11 +10,18 @@ import useProjectStore from "../store/projectStore";
 
 export default function Projects({ projects }) {
   const setProjects = useProjectStore((state) => state.setProjects);
+  const storedProjects = useProjectStore((state) => state.projects);
 
   useEffect(() => {
-    // 프로젝트 데이터를 store에 저장
-    setProjects(projects.results);
+    // store에 데이터가 없을 때만 새로운 데이터를 저장
+    if (!storedProjects || storedProjects.length === 0) {
+      setProjects(projects.results);
+    }
   }, [projects]);
+
+  // store의 데이터를 사용
+  const projectsToDisplay =
+    storedProjects.length > 0 ? storedProjects : projects.results;
 
   return (
     <Layout>
@@ -29,15 +36,15 @@ export default function Projects({ projects }) {
         animate={{ opacity: 1 }}
         transition={{ type: "tween", duration: 0.5 }}
       >
-        <div className="flex flex-col items-center justify-start min-h-screen px-3 mb-10">
+        <div className="container flex flex-col items-center justify-start min-h-screen mx-auto pt-32 mb-12 gap-3 max-sm:pt-24 max-sm:gap-6">
           <h1 className="text-2xl font-bold sm:text-4xl">
             총 프로젝트 :
             <span className="pl-4 text-blue-500">
-              {projects.results.length}
+              {projectsToDisplay.length}
             </span>
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 p-10 m-4 gap-8">
-            {projects.results.map((aProject) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 m-4 gap-8 max-sm:px-4 max-sm:m-0">
+            {projectsToDisplay.map((aProject) => (
               <Link
                 href={`/projects/${aProject.id}`}
                 key={aProject.id}
@@ -68,7 +75,7 @@ export async function getStaticProps() {
       {},
       options
     );
-
+    console.log(response.data.results[0]);
     return {
       props: {
         projects: response.data,
