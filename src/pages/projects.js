@@ -75,7 +75,7 @@ export async function getStaticProps() {
       {},
       options
     );
-    console.log(response.data.results[0]);
+    console.log(response.data.results);
     return {
       props: {
         projects: response.data,

@@ -63,7 +63,7 @@ export default function ProjectDetail() {
         animate={{ opacity: 1 }}
         transition={{ type: "tween", duration: 0.5 }}
       >
-        <div className="w-full mx-auto px-4 mt-4 container sm:mt-10">
+        <div className="w-full mx-auto pt-28 container max-sm:px-4">
           <div className="border border-gray-300 rounded-lg overflow-hidden">
             <Image
               src={imgSrc}
@@ -75,13 +75,15 @@ export default function ProjectDetail() {
               quality={100}
             />
           </div>
-          <div className="flex flex-col justify-start min-h-screen px-3 mb-10 mt-4">
+          <div className="flex flex-col justify-start min-h-screen mb-10 mt-8 max-sm:mt-4">
             <h1 className="text-2xl font-bold sm:text-4xl">{title}</h1>
-            <div className="mt-8 text-lg">{description}</div>
+            <div className="mt-8 text-lg text-primary max-sm:mt-4 max-sm:text-base">
+              {description}
+            </div>
             {func && (
-              <div className="mt-8">
-                <h2 className="text-2xl font-bold mb-2 sm:mb-4">기능 구현</h2>
-                <div className="text-lg">
+              <div className="mt-8 max-sm:mt-4">
+                <h2 className="text-xl font-bold mb-2 sm:mb-4">기능 구현</h2>
+                <div className="text-lg text-primary max-sm:text-base">
                   {func.split("\n").map((line, index) => (
                     <div key={index}>{line}</div>
                   ))}
@@ -89,17 +91,19 @@ export default function ProjectDetail() {
               </div>
             )}
             {trouble && (
-              <div className="mt-8">
-                <h2 className="text-2xl font-bold mb-2 sm:mb-4">트러블 슈팅</h2>
-                <div className="text-lg">
+              <div className="mt-8 max-sm:mt-4">
+                <h2 className="text-xl font-bold mb-2 sm:mb-4">트러블 슈팅</h2>
+                <div className="text-lg text-primary max-sm:text-base">
                   {trouble.split("\n").map((line, index) => (
-                    <div key={index}>{line}</div>
+                    <div className="break-keep whitespace-pre-line" key={index}>
+                      {line}
+                    </div>
                   ))}
                 </div>
               </div>
             )}
             {/* 프로젝트 링크들 */}
-            <div className="mt-4 space-y-2">
+            <div className="mt-8 space-y-2 max-sm:mt-4">
               {webSiteLink && (
                 <a
                   href={webSiteLink}

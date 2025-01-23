@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 
 // 클라이언트 사이드에서만 렌더링되도록 설정
@@ -12,10 +12,13 @@ const ProjectItem = ({ data }) => {
   const youtubeLink = data.properties.youtube.url;
   const webSiteLink = data.properties.webSite.url;
   const description = data.properties.Text.rich_text[0].plain_text;
-  const imgSrc = data.cover.file?.url || data.cover.external.url;
+  const notionCoverImage = data.properties.Cover?.files?.[0]?.file?.url;
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
+
+  // 로컬 대체 이미지 경로 설정
+  const localFallbackImage = `/images/${data.id}.png`; // 또는 .jpg 등 실제 확장자에 맞게 수정
 
   useEffect(() => {
     setMounted(true);
@@ -34,20 +37,25 @@ const ProjectItem = ({ data }) => {
 
   return (
     <div className="project-card">
-      <Image
-        className="rounded-t-xl"
-        src={imgSrc}
-        alt="cover image"
-        width={100}
-        height={50}
-        layout="responsive"
-        objectFit="cover"
-        quality={100}
-      />
+      <div className="relative w-full h-60 border-b border-gray-300">
+        <Image
+          className="rounded-t-xl"
+          src={notionCoverImage || localFallbackImage}
+          alt="project cover image"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: "cover" }}
+          priority={true}
+          onError={(e) => {
+            // 이미지 로드 실패시 로컬 이미지로 대체
+            e.target.src = localFallbackImage;
+          }}
+        />
+      </div>
       <div className="flex flex-1 flex-col justify-between p-4">
         <div className="flex flex-col">
           <h1 className="text-2xl font-bold">{title}</h1>
-          <h3 className="my-4 text-xl break-keep">{description}</h3>
+          <h3 className="my-4 text-gray-600 break-keep">{description}</h3>
         </div>
         {/* {webSiteLink && (
           <a
