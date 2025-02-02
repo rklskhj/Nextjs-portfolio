@@ -75,12 +75,22 @@ export async function getStaticProps() {
       {},
       options
     );
-    console.log(response.data.results);
+
+    // 날짜 기준으로 정렬
+    const sortedResults = response.data.results.sort((a, b) => {
+      const dateA = a.properties.WorkPeriod.date.end;
+      const dateB = b.properties.WorkPeriod.date.end;
+      return new Date(dateB) - new Date(dateA); // 최신 날짜가 먼저 오도록 정렬
+    });
+
     return {
       props: {
-        projects: response.data,
+        projects: {
+          ...response.data,
+          results: sortedResults,
+        },
       },
-      revalidate: 60 * 60, // 1시간마다 재생성
+      revalidate: 60 * 60,
     };
   } catch (error) {
     console.error("Error fetching projects:", error);
