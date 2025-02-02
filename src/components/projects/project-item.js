@@ -8,9 +8,6 @@ const ProjectItem = ({ data }) => {
   const [workPeriod, setWorkPeriod] = useState("");
 
   const title = data.properties.이름.title[0].plain_text;
-  const githubLink = data.properties.Github.url;
-  const youtubeLink = data.properties.youtube.url;
-  const webSiteLink = data.properties.webSite.url;
   const description = data.properties.Text.rich_text[0].plain_text;
   const notionCoverImage = data.properties.Cover?.files?.[0]?.file?.url;
   const tags = data.properties.Tags.multi_select;
@@ -57,29 +54,6 @@ const ProjectItem = ({ data }) => {
           <h1 className="text-2xl font-bold">{title}</h1>
           <h3 className="my-4 text-gray-600 break-keep">{description}</h3>
         </div>
-        {/* {webSiteLink && (
-          <a
-            className="hover:text-[#EC008B] dark:hover:text-[#EC008B]"
-            href={webSiteLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {title} 바로 가기 ➡️
-          </a>
-        )}
-        <a href={githubLink} target="_blank" rel="noopener noreferrer">
-          Github 바로 가기 ➡️
-        </a>
-        {youtubeLink && (
-          <a
-            className="hover:text-[#ff0000] dark:hover:text-[#ff0000]"
-            href={youtubeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Youtube 바로 가기 ➡️
-          </a>
-        )} */}
         <div className="flex flex-col">
           <p className="break-keep my-1">{workPeriod}</p>
           <div className="flex items-start mt-2 flex-wrap gap-2">

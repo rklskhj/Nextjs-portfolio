@@ -48,9 +48,14 @@ export default function ProjectDetail() {
   const youtubeLink = project.properties.youtube.url;
   const webSiteLink = project.properties.webSite.url;
   const func = project.properties.function.rich_text[0]?.plain_text || null;
-  const trouble = project.properties.trouble.rich_text[0]?.plain_text || null;
-  console.log("function", project.properties.function);
-  console.log("trouble", project.properties.trouble);
+  const trouble =
+    project.properties.trouble.rich_text.length > 0
+      ? project.properties.trouble.rich_text
+          .map((text) => text.plain_text)
+          .join("")
+      : null;
+  // 로컬 대체 이미지 경로 설정
+  const localFallbackImage = `/images/${project.id}.png`; // 또는 .jpg 등 실제 확장자에 맞게 수정
   return (
     <Layout>
       <Head>
@@ -66,13 +71,17 @@ export default function ProjectDetail() {
         <div className="w-full mx-auto pt-28 container max-sm:px-4">
           <div className="border border-gray-300 rounded-lg overflow-hidden">
             <Image
-              src={imgSrc}
+              src={imgSrc || localFallbackImage}
               alt="cover image"
               width={100}
               height={50}
               layout="responsive"
               objectFit="cover"
               quality={100}
+              onError={(e) => {
+                // 이미지 로드 실패시 로컬 이미지로 대체
+                e.target.src = localFallbackImage;
+              }}
             />
           </div>
           <div className="flex flex-col justify-start min-h-screen mb-10 mt-8 max-sm:mt-4">
