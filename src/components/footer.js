@@ -10,7 +10,7 @@ export default function Footer() {
               <span className="ml-3 text-xl">김혁진의 Portfolio!</span>
             </a>
             <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
-              © 2020 KimHyeokJin —
+              © 2025 KimHyeokJin —
               <a
                 href="https://github.com/rklskhj"
                 rel="noopener noreferrer"

@@ -5,7 +5,7 @@ import { TOKEN, DATABASE_ID } from "../config";
 import { motion } from "framer-motion";
 import axios from "axios";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useProjectStore from "../store/projectStore";
 
 export default function Projects({ projects }) {
