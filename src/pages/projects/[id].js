@@ -12,12 +12,17 @@ export default function ProjectDetail() {
   const projects = useProjectStore((state) => state.projects);
   const [isLoading, setIsLoading] = useState(true);
   const [project, setProject] = useState(null);
+  const [currentImgSrc, setCurrentImgSrc] = useState("");
 
   useEffect(() => {
-    // id와 projects가 모두 있을 때만 프로젝트를 찾음
     if (id && projects.length > 0) {
       const foundProject = projects.find((p) => p.id === id);
       setProject(foundProject);
+      if (foundProject) {
+        const imgSrc =
+          foundProject.cover.file?.url || foundProject.cover.external.url;
+        setCurrentImgSrc(imgSrc);
+      }
       setIsLoading(false);
     }
   }, [id, projects]);
@@ -38,7 +43,12 @@ export default function ProjectDetail() {
     router.push("/projects");
     return null;
   }
-  const imgSrc = project.cover.file?.url || project.cover.external.url;
+
+  // 이미지 에러 핸들러
+  const handleImageError = () => {
+    setCurrentImgSrc(`/images/${id}.png`);
+  };
+
   const title = project.properties.이름.title[0].plain_text;
   const description = project.properties.Text.rich_text[0].plain_text;
   const tags = project.properties.Tags.multi_select;
@@ -54,8 +64,7 @@ export default function ProjectDetail() {
           .map((text) => text.plain_text)
           .join("")
       : null;
-  // 로컬 대체 이미지 경로 설정
-  const localFallbackImage = `/images/${project.id}.png`; // 또는 .jpg 등 실제 확장자에 맞게 수정
+
   return (
     <Layout>
       <Head>
@@ -71,17 +80,14 @@ export default function ProjectDetail() {
         <div className="w-full mx-auto pt-28 container max-sm:px-4">
           <div className="border border-gray-300 rounded-lg overflow-hidden">
             <Image
-              src={imgSrc || localFallbackImage}
+              src={currentImgSrc}
               alt="cover image"
               width={100}
               height={50}
               layout="responsive"
               objectFit="cover"
               quality={100}
-              onError={(e) => {
-                // 이미지 로드 실패시 로컬 이미지로 대체
-                e.target.src = localFallbackImage;
-              }}
+              onError={handleImageError}
             />
           </div>
           <div className="flex flex-col justify-start min-h-screen mb-10 mt-8 max-sm:mt-4">
